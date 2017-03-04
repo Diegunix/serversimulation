@@ -81,11 +81,12 @@ public class CallUrl {
             conn.setRequestMethod("POST");
             String data =  "{\"id\":\"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaac\",\"persistent\":true,\"priority\":0,"
                     +  "\"request\":{\"method\":\"POST\",\"url\":\"/globalweather.asmx\","
-                    +  "\"bodyPatterns\":[{\"matchesXPath\":\"*\"}]},"
-                    +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World, Soap Weather!\",\"bodyFileName\":\"\","
-                    +  "\"delayDistribution\":null,\"headers\":{},"
+                    +  "\"bodyPatterns\":[{\"matches\":\".*GetCitiesByCountry.*\"}]},"
+                    +  "\"response\":{\"base64Body\":\"\","
+                    +  "\"body\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?><soap:Envelope xmlns:soap=\\\"http://schemas.xmlsoap.org/soap/envelope/\\\" xmlns:xsi=\\\"http://www.w3.org/2001/XMLSchema-instance\\\" xmlns:xsd=\\\"http://www.w3.org/2001/XMLSchema\\\"><soap:Body><GetCitiesByCountryResponse xmlns=\\\"http://www.webserviceX.NET\\\"><GetCitiesByCountryResult>Hello World, Soap Weather!</GetCitiesByCountryResult></GetCitiesByCountryResponse></soap:Body></soap:Envelope>\","
+                    + "\"bodyFileName\":\"\",\"delayDistribution\":null,\"headers\":{},"
                     +  "\"jsonBody\":{},\"status\":0,\"transformerParameters\":{},\"transformers\":[]}}";
-            System.out.println(data);
+
             OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
             out.write(data);
             out.close();
@@ -139,6 +140,46 @@ public class CallUrl {
     public static void callDeleteRestCurrencyCurl() {
         try {
             URL obj = new URL("http://localhost:9898/__admin/mappings/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab");
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("DELETE");
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.close();
+            new InputStreamReader(conn.getInputStream());
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+    }
+    
+    public static void callAddMappingSOAPCurrencyCurl() {
+        try {
+            URL obj = new URL("http://localhost:9898/__admin/mappings");
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            String data =  "{\"id\":\"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaad\",\"persistent\":true,\"priority\":0,"
+                    +  "\"request\":{\"method\":\"POST\",\"url\":\"/country.asmx\","
+                    +  "\"bodyPatterns\":[{\"matches\":\".*GetCurrencyByCountry.*\"}]},"
+                    +  "\"response\":{\"base64Body\":\"\","
+                    +  "\"body\":\"<?xml version=\\\"1.0\\\" encoding=\\\"utf-8\\\"?><soap:Envelope xmlns:soap=\\\"http://schemas.xmlsoap.org/soap/envelope/\\\" xmlns:xsi=\\\"http://www.w3.org/2001/XMLSchema-instance\\\" xmlns:xsd=\\\"http://www.w3.org/2001/XMLSchema\\\"><soap:Body><GetCurrencyByCountryResponse xmlns=\\\"http://www.webserviceX.NET\\\"><GetCurrencyByCountryResult>Hello World, Soap Currency!</GetCurrencyByCountryResult></GetCurrencyByCountryResponse></soap:Body></soap:Envelope>\","
+                    + "\"bodyFileName\":\"\",\"delayDistribution\":null,\"headers\":{},"
+                    +  "\"jsonBody\":{},\"status\":0,\"transformerParameters\":{},\"transformers\":[]}}";
+           
+            OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+            out.write(data);
+            out.close();
+            new InputStreamReader(conn.getInputStream());
+            } catch (Exception e) {
+            e.printStackTrace();
+            }
+    }
+    
+    
+    public static void callDeleteSOAPCurrencyCurl() {
+        try {
+            URL obj = new URL("http://localhost:9898/__admin/mappings/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaad");
             HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);

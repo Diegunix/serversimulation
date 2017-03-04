@@ -50,10 +50,12 @@ public class ServerSimulationUI extends UI {
         buttonCurrency.addClickListener( e -> {
             if (currency) {
                 CallUrl.callDeleteRestCurrencyCurl();
+                CallUrl.callDeleteSOAPCurrencyCurl();
                 buttonCurrency.setCaption("NO");
                 currency = false;
             }else {
                 CallUrl.callAddMappingRestCurrencyCurl();
+                CallUrl.callAddMappingSOAPCurrencyCurl();
                 buttonCurrency.setCaption("YES");
                 currency = true;
             }
