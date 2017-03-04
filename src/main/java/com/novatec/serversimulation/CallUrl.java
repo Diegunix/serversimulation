@@ -42,7 +42,7 @@ public class CallUrl {
             conn.setRequestMethod("POST");
             String data =  "{\"id\":\"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa\",\"persistent\":true,\"priority\":0,"
                     +  "\"request\":{\"method\":\"GET\",\"urlPattern\":\"/globalweather.asmx/GetCitiesByCountry\\\\?CountryName=(\\\\S*)\"},"
-                    +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World!\",\"bodyFileName\":\"\","
+                    +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World, Rest Weather!\",\"bodyFileName\":\"\","
                     +  "\"delayDistribution\":null,\"headers\":{},"
                     +  "\"jsonBody\":{},\"status\":0,\"transformerParameters\":{},\"transformers\":[]}}";
             
@@ -80,8 +80,8 @@ public class CallUrl {
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             String data =  "{\"id\":\"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaac\",\"persistent\":true,\"priority\":0,"
-                    +  "\"request\":{\"method\":\"POST\",\"url\":\"/globalweather.asmx\",\"bodyPatterns\":"
-                    + "[\"matchesXPath\":\"<?xml version=\"1.0\" encoding=\"UTF-8\"?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"><soapenv:Body><GetCitiesByCountry xmlns=\"http://www.webserviceX.NET\"><CountryName>Germany</CountryName></GetCitiesByCountry></soapenv:Body></soapenv:Envelope>\"],},"
+                    +  "\"request\":{\"method\":\"POST\",\"url\":\"/globalweather.asmx\","
+                    +  "\"bodyPatterns\":[{\"matchesXPath\":\"*\"}]},"
                     +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World, Soap Weather!\",\"bodyFileName\":\"\","
                     +  "\"delayDistribution\":null,\"headers\":{},"
                     +  "\"jsonBody\":{},\"status\":0,\"transformerParameters\":{},\"transformers\":[]}}";
@@ -122,7 +122,7 @@ public class CallUrl {
             conn.setRequestMethod("POST");
             String data =  "{\"id\":\"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaab\",\"persistent\":true,\"priority\":0,"
                     +  "\"request\":{\"method\":\"GET\",\"urlPattern\":\"/country.asmx/GetCurrencyByCountry\\\\?CountryName=(\\\\S*)\"},"
-                    +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World!\",\"bodyFileName\":\"\","
+                    +  "\"response\":{\"base64Body\":\"\",\"body\":\"Hello World, Rest Currency!\",\"bodyFileName\":\"\","
                     +  "\"delayDistribution\":null,\"headers\":{},"
                     +  "\"jsonBody\":{},\"status\":0,\"transformerParameters\":{},\"transformers\":[]}}";
             
@@ -150,6 +150,4 @@ public class CallUrl {
             e.printStackTrace();
             }
     }
-    
-
 }
